@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'rails',        '5.0.0.1'
+gem 'puma', '3.6.0'
 
 group :development, :test do
   gem 'sqlite3', '1.3.11'
@@ -14,8 +15,11 @@ group :development do
   gem 'spring-watcher-listen', '2.0.0'
 end
 
+group :test do
+  gem 'minitest-reporters',       '1.1.9'
+end
+
 group :production do
-  gem 'puma', '3.6.0'
   gem 'pg',   '0.18.4'
 end
 
