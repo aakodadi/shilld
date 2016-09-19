@@ -5,6 +5,10 @@ Shill-project is a CLI social network.
 shilld is the server-side (backend). A web service developed as a
 Ruby on Rails application.
 
+[![Code Climate](https://codeclimate.com/github/akodakim/shilld/badges/gpa.svg)](https://codeclimate.com/github/akodakim/shilld)
+
+[![Test Coverage](https://codeclimate.com/github/akodakim/shilld/badges/coverage.svg)](https://codeclimate.com/github/akodakim/shilld/coverage)
+
 ## License
 
 All source code in this project is available under the MIT License. See
