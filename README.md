@@ -14,6 +14,12 @@ Ruby on Rails application.
 All source code in this project is available under the MIT License. See
 [LICENSE](LICENSE) for details.
 
+
+
+## Related projects
+
++ [shill](https://github.com/akodakim/shill "shill") (shill client)
+
 ## Getting started
 
 To get started with the app, clone the repo and then install the needed gems:
