@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = User.new(username: "user", email: "user@example.com", password: 'secure_password', password_confirmation: 'secure_password')
+    @user = User.new(username: "user", name: "Example User", email: "user@example.com", password: 'secure_password', password_confirmation: 'secure_password')
     @newton = users(:newton)
   end
 
@@ -25,7 +25,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update user" do
-    patch user_url(@newton), params: { user: { email: "newton@example.com", password: 'appleinthehead', password_confirmation: 'appleinthehead', username: 'isaac.newton' } }, as: :json
+    patch user_url(@newton), params: { user: { email: "newton@example.com", name: "Newton", password: 'appleinthehead', password_confirmation: 'appleinthehead', username: 'isaac.newton' } }, as: :json
     assert_response 200
   end
 

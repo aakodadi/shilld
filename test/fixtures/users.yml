@@ -2,10 +2,12 @@
 
 newton:
   username: newton
+  name: Isaac Newton
   email: isaac.newton@example.com
   password_digest: <%= BCrypt::Password.create('appleinthehead') %>
 
 einstein:
   username: einstein
+  name: Albert Einstein
   email: albert.einstein@example.com
   password_digest: <%= BCrypt::Password.create('lightismatter') %>
