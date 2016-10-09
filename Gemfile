@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails',                    '5.0.0.1'
 gem 'puma',                     '3.6.0'
 gem 'active_model_serializers', '0.10.2'
+gem 'bcrypt',                   '3.1.11'
 
 group :development, :test do
   gem 'sqlite3', '1.3.11'
