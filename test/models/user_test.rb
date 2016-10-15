@@ -13,7 +13,7 @@ class UserTest < ActiveSupport::TestCase
     assert @user.valid?
   end
 
-  test "too should be" do
+  test "password should be" do
     @user.password = nil
     @user.password_confirmation = nil
     assert_not @user.valid?
