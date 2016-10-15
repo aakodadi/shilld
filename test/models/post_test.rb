@@ -2,7 +2,8 @@ require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
   setup do
-    @post = Post.new(body: "This is a test post")
+    @newton = users(:newton)
+    @post = Post.new(body: "This is a test post", user: @newton)
   end
 
   test "should be valid" do
