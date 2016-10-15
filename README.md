@@ -9,6 +9,8 @@ Ruby on Rails application.
 
 [![Test Coverage](https://codeclimate.com/github/akodakim/shilld/badges/coverage.svg)](https://codeclimate.com/github/akodakim/shilld/coverage)
 
+[![Issue Count](https://codeclimate.com/github/akodakim/shilld/badges/issue_count.svg)](https://codeclimate.com/github/akodakim/shilld)
+
 ## License
 
 All source code in this project is available under the MIT License. See
