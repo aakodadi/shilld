@@ -18,6 +18,14 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response 201
   end
 
+  test "should not create post if unvalid" do
+    assert_no_difference('Post.count') do
+      post posts_url, params: { post: { body: nil } }, as: :json
+    end
+
+    assert_response 422
+  end
+
   test "should show post" do
     get post_url(@post), as: :json
     assert_response :success
@@ -26,6 +34,11 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test "should update post" do
     patch post_url(@post), params: { post: { body: @post.body } }, as: :json
     assert_response 200
+  end
+
+  test "should not update post if unvalid" do
+    patch post_url(@post), params: { post: { body: nil } }, as: :json
+    assert_response 422
   end
 
   test "should destroy post" do
