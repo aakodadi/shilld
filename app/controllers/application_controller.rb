@@ -13,8 +13,6 @@ class ApplicationController < ActionController::API
 
     # Confirms a logged-in user.
     def require_auth
-      unless current_user
-        head :unauthorized
-      end
+      head :unauthorized unless current_user
     end
 end
