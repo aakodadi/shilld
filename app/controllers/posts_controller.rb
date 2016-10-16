@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
   before_action :require_auth
+  before_action :correct_user, only: [:destroy, :update]
 
   # GET /posts
   def index
@@ -49,5 +50,9 @@ class PostsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def post_params
       params.require(:post).permit(:body)
+    end
+
+    def correct_user
+      head :unauthorized unless @post.user == current_user
     end
 end
