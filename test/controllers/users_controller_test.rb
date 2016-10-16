@@ -90,6 +90,16 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :unauthorized
   end
 
+  test "should not update user without password" do
+    patch user_url(@newton.username), headers: get_headers, params: {
+      user: { email: "newton@example.com",
+        name: "Newton",
+        username: 'isaac.newton'
+      }
+    }, as: :json
+    assert_response :unauthorized
+  end
+
   test "should not update user when not authonticated with wrong password" do
     patch user_url(@newton.username), params: {
       user: { email: "newton@example.com",
@@ -127,6 +137,16 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference('User.count') do
       delete user_url(@newton.username), headers: get_headers, params: {
         user: { password: 'appleintheheal'}
+      }, as: :json
+    end
+
+    assert_response :unauthorized
+  end
+
+  test "should not destroy user without password" do
+    assert_no_difference('User.count') do
+      delete user_url(@newton.username), headers: get_headers, params: {
+        user: { username: @newton.username }
       }, as: :json
     end
 
