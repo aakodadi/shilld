@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-  before_action :require_auth, except: [:create]
+  before_action :require_auth, only: [:index, :show]
+  before_action :check_password, only: [:update, :destroy]
 
   # GET /users
   def index
@@ -43,6 +44,10 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find_by!(username: params[:username])
+    end
+
+    def check_password
+      head :unauthorized unless @user.authenticate(user_params[:password])
     end
 
     # Only allow a trusted parameter "white list" through.
