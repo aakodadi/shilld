@@ -1,5 +1,6 @@
 class AuthsController < ApplicationController
   before_action :set_user, only: [:create]
+  before_action :require_auth, only: [:destroy]
 
   # POST /auth
   def create
@@ -13,9 +14,7 @@ class AuthsController < ApplicationController
 
   # DELETE /auth
   def destroy
-    if current_user
-      current_user.forget
-    end
+    current_user.forget
   end
 
   private
