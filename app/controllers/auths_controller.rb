@@ -7,8 +7,10 @@ class AuthsController < ApplicationController
     if @user && @user.authenticate(user_params[:password])
       @user.remember
       render json: @user, status: :created, location: @user
+    elsif @user
+      head :unauthorized
     else
-      render json: @user.errors, status: :unprocessable_entity
+      head :unprocessable_entity
     end
   end
 
@@ -22,8 +24,8 @@ class AuthsController < ApplicationController
     def set_user
       username = user_params[:username]
       email = user_params[:email]
-      unless @user = User.find_by!(username: username)
-        @user = User.find_by!(email: email)
+      unless @user = User.find_by(username: username)
+        @user = User.find_by(email: email)
       end
     end
 
