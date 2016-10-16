@@ -4,10 +4,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = User.new(username: "user", name: "Example User", email: "user@example.com", password: 'secure_password', password_confirmation: 'secure_password')
     @newton = users(:newton)
+    login_as(User.new(username: 'newton', password: 'appleinthehead'))
   end
 
   test "should get index" do
-    get users_url, as: :json
+    get users_url, headers: get_headers, as: :json
     assert_response :success
   end
 
@@ -42,12 +43,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show user" do
-    get user_url(@newton.username), as: :json
+    get user_url(@newton.username), headers: get_headers, as: :json
     assert_response :success
   end
 
   test "should update user" do
-    patch user_url(@newton.username), params: {
+    patch user_url(@newton.username), headers: get_headers, params: {
       user: { email: "newton@example.com",
         name: "Newton",
         password: 'appleinthehead',
@@ -59,7 +60,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not update user if unvalid" do
-    patch user_url(@newton.username), params: {
+    patch user_url(@newton.username), headers: get_headers, params: {
       user: { email: "newton@example.com",
         name: "Newton",
         password: 'appleinthehead',
@@ -72,7 +73,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should destroy user" do
     assert_difference('User.count', -1) do
-      delete user_url(@newton.username), as: :json
+      delete user_url(@newton.username), headers: get_headers, as: :json
     end
 
     assert_response 204

@@ -11,4 +11,25 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def login_as(user)
+    post auth_url,
+      params: { user: {
+          username: user.username,
+          password: user.password
+        }
+      }, as: :json
+      user = JSON.parse(@response.body)
+      @headers = {
+        'Authorization' => %(Token token="#{user["auth_token"]}", username="#{user["username"]}")
+      }
+      @current_user = User.find_by(username: user["username"])
+  end
+
+  def get_headers
+    @headers
+  end
+
+  def current_user
+    @current_user
+  end
 end
