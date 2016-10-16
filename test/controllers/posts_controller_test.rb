@@ -18,7 +18,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create post" do
     assert_difference('Post.count') do
-      post posts_url, headers: get_headers, params: { post: { body: @post.body } }, as: :json
+      post posts_url, headers: get_headers,
+        params: { post: { body: @post.body } }, as: :json
     end
 
     assert_response 201
@@ -34,7 +35,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not create post if unvalid" do
     assert_no_difference('Post.count') do
-      post posts_url, headers: get_headers, params: { post: { body: nil } }, as: :json
+      post posts_url, headers: get_headers,
+        params: { post: { body: nil } }, as: :json
     end
 
     assert_response 422
@@ -51,7 +53,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update post" do
-    patch post_url(@post), headers: get_headers, params: { post: { body: @post.body } }, as: :json
+    patch post_url(@post), headers: get_headers,
+      params: { post: { body: @post.body } }, as: :json
     assert_response 200
   end
 
@@ -62,12 +65,14 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not update post if not authenticated as author" do
     @post = posts(:two)
-    patch post_url(@post), headers: get_headers, params: { post: { body: @post.body } }, as: :json
+    patch post_url(@post), headers: get_headers,
+      params: { post: { body: @post.body } }, as: :json
     assert_response :unauthorized
   end
 
   test "should not update post if unvalid" do
-    patch post_url(@post), headers: get_headers, params: { post: { body: nil } }, as: :json
+    patch post_url(@post), headers: get_headers,
+      params: { post: { body: nil } }, as: :json
     assert_response 422
   end
 
